@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixit Plumbing (Demo) | Get a Quote in 60 Seconds</title>
+<meta name="description" content="Demo website: request a plumbing quote in under a minute. Fictional business for a YouTube tutorial.">
+<style>
+  :root { --ink:#1d2330; --muted:#5b6475; --accent:#0b6e4f; --bg:#f6f8f7; --card:#ffffff; --line:#dfe5e2; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  header{background:var(--card);border-bottom:1px solid var(--line)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 16px}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:700;color:var(--accent)}
+  .phone{font-weight:600;text-decoration:none;color:var(--ink)}
+  .hero{padding:48px 0 32px}
+  h1{font-size:2rem;line-height:1.2;margin:0 0 12px}
+  .lead{color:var(--muted);margin:0 0 20px;font-size:1.05rem}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:600;border:0;cursor:pointer;font-size:1rem}
+  .grid{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}h1{font-size:2.6rem}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .card h3{margin:0 0 6px;font-size:1.05rem}
+  .card p{margin:0;color:var(--muted);font-size:.95rem}
+  section{padding:24px 0}
+  h2{font-size:1.4rem;margin:0 0 14px}
+  form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:12px}
+  label{font-size:.9rem;font-weight:600}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+  .row{display:grid;gap:12px;grid-template-columns:1fr}
+  @media(min-width:720px){.row{grid-template-columns:1fr 1fr}}
+  .note{font-size:.85rem;color:var(--muted)}
+  #result{display:none;margin-top:12px;padding:14px;border-radius:8px;background:#e7f4ee;color:#0b4d37;font-weight:600}
+  footer{padding:24px 0;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <span class="brand">Fixit Plumbing (Demo)</span>
+    <a class="phone" href="tel:+10000000000">Call us: 000-000-0000</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Burst pipe? Leaking tap? Get a quote in 60 seconds.</h1>
+    <p class="lead">Tell us what is wrong. We reply with a price range and the earliest time we can come.</p>
+    <a class="btn" href="#quote">Get my quote</a>
+  </div>
+
+  <section>
+    <div class="grid">
+      <div class="card"><h3>Same-day callouts</h3><p>Emergency visits booked the same day when a slot is free.</p></div>
+      <div class="card"><h3>Price range first</h3><p>You see an estimated range before any visit is booked.</p></div>
+      <div class="card"><h3>Done and tidy</h3><p>We clean up, test the fix, and show you the result.</p></div>
+    </div>
+  </section>
+
+  <section id="quote">
+    <h2>Request a quote</h2>
+    <form id="quoteForm" novalidate>
+      <div class="row">
+        <div><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div><label for="phone">Phone (WhatsApp preferred)</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div class="row">
+        <div><label for="email">Email (optional)</label><input id="email" name="email" type="email" autocomplete="email"></div>
+        <div>
+          <label for="job">What needs fixing?</label>
+          <select id="job" name="job" required>
+            <option value="">Choose one</option>
+            <option>Leaking tap or pipe</option>
+            <option>Blocked drain</option>
+            <option>Burst or frozen pipe (emergency)</option>
+            <option>Water heater</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <div><label for="details">Describe the problem</label><textarea id="details" name="details" rows="3"></textarea></div>
+      <div><button class="btn" type="submit">Get my quote</button></div>
+      <p class="note">Demo form only. Nothing is sent anywhere.</p>
+      <div id="result" role="status"></div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Fixit Plumbing is a fictional demo business created for a YouTube tutorial.</div>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('quoteForm');
+    var result = document.getElementById('result');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = form.name.value.trim();
+      var phone = form.phone.value.trim();
+      var job = form.job.value;
+      if (!name || !phone || !job) {
+        result.style.display = 'block';
+        result.textContent = 'Please add your name, phone and the job type.';
+        return;
+      }
+      result.style.display = 'block';
+      result.textContent = 'Thanks ' + name + '. Demo only: a quote request for "' + job + '" would be sent here.';
+      form.reset();
+    });
+  })();
+</script>
+</body>
+</html>
